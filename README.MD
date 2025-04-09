@@ -10,10 +10,11 @@ This is a simple task management application built using the traditional softwar
 - Asynchronous task creation/deletion via AJAX
 
 ## Installation & Running the App
+```bash
 python3 -m venv venv
 source venv/bin/activate
 pip3 install -r requirements.txt
-
 python3 setup_db.py
 python3 app.py
+```
 Running on http://127.0.0.1:5000
