@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task Management</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+	<h1>Task Management</h1>
+	<form method="POST" action="/add_task">
+		<input type="text" name="task_name" placeholder="Task Name" required>
+		<input type="text" name="category" placeholder="Category">
+		<input type="date" name="due_date" required>
+		<button type="submit">Add Task</button>
+	</form>
+	
+	<table>
+		<thead>
+			<tr>
+				<th>Task Name</th>
+				<th>Category</th>
+				<th>Due Date</th>
+				<th>Status</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for task in tasks %}
+			<tr>
+				<td>{{ task.task_name }}</td>
+				<td>{{ task.category }}</td>
+				<td>{{ task.due_date }}</td>
+				<td>{{ task.status }}</td>
+				<td>
+					<a href="/edit_task/{{ task.id }}">Edit</a>
+					<form action="/delete_task/{{ task.id }}" method="POST" style="display:inline;">
+						<button type="submit">Delete</button>
+					</form>
+				</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</body>
+</html>
